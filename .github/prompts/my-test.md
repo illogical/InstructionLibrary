@@ -1,0 +1,1 @@
+Just curious if this repo is properly configured in Awesome Copilot.
