@@ -68,8 +68,9 @@ Bun.serve({
     const url = new URL(req.url);
     let filePath = url.pathname;
     
-    // Default to index.html for root or paths without extension
-    if (filePath === "/" || !filePath.includes(".")) {
+    // Default to index.html for root or paths without file extensions
+    // Check if path has a file extension (e.g., .js, .css, .png)
+    if (filePath === "/" || !/\.[a-zA-Z0-9]+$/.test(filePath)) {
       filePath = "/index.html";
     }
     
@@ -379,22 +380,23 @@ a {
 }
 
 /* Modern selectors */
+/* Note: CSS nesting (& syntax) requires Chrome 112+, Firefox 117+, Safari 16.5+ */
+/* For broader support, use traditional selectors or a PostCSS plugin */
 .button {
   padding: var(--space-3) var(--space-6);
   background: var(--color-primary);
   color: white;
   border-radius: var(--border-radius);
   transition: background var(--transition-base);
-  
-  /* Modern pseudo-classes */
-  &:hover {
-    background: var(--color-primary-hover);
-  }
-  
-  &:is(:focus-visible, :active) {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
+}
+
+.button:hover {
+  background: var(--color-primary-hover);
+}
+
+.button:is(:focus-visible, :active) {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Grid with auto-fit for responsive layouts */
@@ -649,8 +651,8 @@ import { z } from "zod";
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-  API_PORT: z.string().transform(Number).default("3001"),
-  WEB_PORT: z.string().transform(Number).default("3000"),
+  API_PORT: z.coerce.number().default(3001),
+  WEB_PORT: z.coerce.number().default(3000),
   DATABASE_URL: z.string().url(),
   JWT_SECRET: z.string().min(32),
   CORS_ORIGIN: z.string().url().optional(),
@@ -668,7 +670,7 @@ export const env = envSchema.parse(process.env);
   "scripts": {
     "dev:web": "bun run web/server.ts",
     "dev:api": "bun run api/server.ts",
-    "dev": "bun run --parallel dev:web dev:api",
+    "dev": "bun run dev:web & bun run dev:api",
     "build:web": "bun build web/src/main.ts --outdir web/public/dist --minify",
     "build:api": "bun build api/src/index.ts --outdir api/dist --target bun",
     "build": "bun run build:web && bun run build:api",
@@ -906,7 +908,13 @@ class ApiClient {
   }
 }
 
-export const api = new ApiClient(import.meta.env.VITE_API_URL || "http://localhost:3001");
+// Note: In Bun, environment variables are accessed via process.env
+// For build-time variable replacement, use a bundler like esbuild or Vite
+const apiUrl = typeof process !== 'undefined' && process.env.API_URL 
+  ? process.env.API_URL 
+  : "http://localhost:3001";
+
+export const api = new ApiClient(apiUrl);
 ```
 
 ## Summary
