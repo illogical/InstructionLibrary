@@ -180,9 +180,9 @@ When including scripts, prefer cross-platform languages:
 
 | Language | Use Case |
 |----------|----------|
-| Python | Complex automation, data processing |
+| Typescript | Complex automation, data processing |
 | pwsh | PowerShell Core scripting |
-| Node.js | JavaScript-based tooling |
+| Bun.js | JavaScript-based tooling |
 | Bash/Shell | Simple automation tasks |
 
 Best practices:
