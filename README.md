@@ -1,3 +1,8 @@
+# Purpose
+This is just a collection of skills from other repos and a mix of my own for only the sake of convenience for 
+use with the Awesome-Copilot extension making it simple to import prompts, skills, and instructions to other projects to inform LLMs on best practices.
+
+
 # Folder Structure for Awesome-Copilot support
 
 prompts/         Task-specific prompts (.prompt.md)
@@ -10,3 +15,4 @@ skills/          AI capabilities for specialized tasks
 ### References
 https://github.com/muratcankoylan
 https://github.com/github/awesome-copilot
+https://github.com/anthropics/skills
