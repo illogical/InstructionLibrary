@@ -1,22 +1,23 @@
 ---
 name: maintain-dev-docs
-description: Maintains development documentation for iterative software projects. Use when starting new projects, adding features to existing projects, updating specifications, managing phase transitions, or when documentation needs to be created/updated in /docs/ folder. Ensures consistent WIP documentation evolution across brainstorm, specification, tasks, and feature implementation.
+description: For all iterative software engineering projects to maintain/improve effective development documentation. Use when starting new or updating existing projects to track tasks & update documentation for adding features to existing projects, updating specifications, and/or instructions.
 ---
 
 # Developer Documentation Maintainer
 
 ## Overview
 
-This skill helps maintain comprehensive, evolving development documentation for software projects. It establishes a consistent pattern for capturing ideas, specifications, tasks, and implementation details in a `/docs/` folder that grows with your project.
+This skill helps maintain comprehensive, evolving development documentation for software projects. It establishes a consistent pattern for capturing ideas, specifications, tasks, and implementation details in a `/docs/` folder that grows with your project. Ensures consistent WIP documentation evolution across brainstorm, specification, tasks, and feature implementation. Assists humans and AI agents track progress being made, tasks prioritization, objectives, instructions, and decisions during an iterative development process.
 
 Use this skill when:
 - Starting a new project with initial ideas
 - Adding features to an existing project
 - Updating technical specifications
-- Managing phase transitions
 - Documentation needs to be created or synchronized with code
+- Instructions for project setup, configuration, or implemented features need modified in the README.md
+- Adding/updating project tasks in TASKS.md based upon current progress, new feature ideas/improvements, or changes in feature development priorities.
 
-The skill ensures AI coding assistants (Claude Code, GitHub Copilot, Anti-Gravity) have consistent, up-to-date context about what you're building, architectural decisions made, and what remains to be done.
+The skill ensures AI coding assistants (Claude Code, GitHub Copilot, Antigravity, ect.) have consistent, up-to-date context about what you're building, architectural decisions made, and what remains to be done.
 
 ### Documentation Structure
 
@@ -24,11 +25,11 @@ This skill manages five core documentation files in `/docs/`:
 
 ```
 docs/
-├── brainstorm.md          # Initial ideas, evolving as project grows
-├── specification.md       # Architecture, tech stack, API design, general requirements
-├── tasks.md              # Hierarchical task list organized by phases
-├── PHASE0.md             # Detailed implementation specs for Phase 0
-├── PHASE1.md             # Detailed implementation specs for Phase 1 (created as needed)
+├── BRAINSTORM.md          # Initial ideas, evolving as project grows
+├── SPECIFICATION.md       # Architecture, tech stack, API design, general requirements
+├── TASKS.md              # Hierarchical task list organized by phases
+├── PHASE0.md             # Detailed/prioritized implementation specs for Phase 0
+├── PHASE1.md             # Detailed/prioritized implementation specs for Phase 1 (created as needed)
 ├── README.md             # User-facing documentation and getting started
 └── features/             # Optional: individual feature documentation
     └── feature-name.md
@@ -43,17 +44,17 @@ docs/
 Use this workflow when starting a project from scratch:
 
 1. **Create documentation structure**: Initialize `/docs/` folder with core files
-2. **Start with brainstorm**: Capture initial ideas in `brainstorm.md`
+2. **Start with brainstorm**: Capture initial ideas in `BRAINSTORM.md`
    - Project purpose and objectives
    - Target users
    - Success criteria
    - Open questions
-3. **Create specification**: Transform brainstorm into `specification.md`
+3. **Create specification**: Transform brainstorm into `SPECIFICATION.md`
    - **CRITICAL**: Ask about and document database provider, LLM providers, logging, observability
    - Define architecture and tech stack
    - Outline API and data models
    - List general functional/non-functional requirements
-4. **Build task list**: Create `tasks.md` with hierarchical structure
+4. **Build task list**: Create `TASKS.md` with hierarchical structure
    - Organize by phases (Phase 0, Phase 1, etc.)
    - Nest tasks under each phase
    - Use checkboxes for tracking
@@ -63,9 +64,10 @@ Use this workflow when starting a project from scratch:
    - API endpoints with examples
    - LLM integration details (if applicable)
    - Logging and observability setup
-   - Testing requirements
+   - Testing/verification requirements
 6. **Create README**: Write `README.md` for users
    - Project description
+   - Implemented feature descriptions & instructions for use
    - Getting started instructions
    - Prerequisites and installation
    - Basic usage examples
@@ -92,11 +94,11 @@ Use this workflow when a project already has some documentation:
 
 Use this workflow when adding new features to a project:
 
-1. **Update specification** (if needed): Add to `specification.md` if introducing:
+1. **Update specification** (if needed): Add to `SPECIFICATION.md` if introducing:
    - New external services or APIs
    - New technology or framework
    - Changes to architecture
-2. **Add tasks**: Update `tasks.md`
+2. **Add tasks**: Update `TASKS.md`
    - Add new tasks under appropriate phase
    - Mark tasks as completed when done
 3. **Update phase file**: Add detailed specs to relevant `PHASE#.md`
@@ -117,22 +119,22 @@ Use this workflow when adding new features to a project:
 Use this workflow when moving from one development phase to another:
 
 1. **Review current phase**: Ensure all tasks in current phase are complete
-2. **Mark tasks complete**: Update `tasks.md`
+2. **Mark tasks complete**: Update `TASKS.md`
    - Check off completed tasks
    - Move to "Completed Tasks" section if desired
-3. **Update specification**: Update phase overview in `specification.md`
+3. **Update specification**: Update phase overview in `SPECIFICATION.md`
 4. **Create next phase file**: Generate `PHASE[N+1].md` with:
    - Phase overview and goals
    - Success criteria
    - Detailed implementation specifications
    - Dependencies and risks
-5. **Plan next phase tasks**: Add new phase tasks to `tasks.md`
+5. **Plan next phase tasks**: Add new phase tasks to `TASKS.md`
 
 ---
 
 ## Documentation Files Overview
 
-### brainstorm.md
+### BRAINSTORM.md
 **Purpose**: Capture initial ideas and evolving requirements
 
 **When to update**:
@@ -149,9 +151,9 @@ Use this workflow when moving from one development phase to another:
 - Constraints and considerations
 - Open questions
 
-This is your "thinking space" where ideas can be messy and evolving. As ideas solidify, they move into specification.md.
+This is your "thinking space" where ideas can be messy and evolving. As ideas solidify, they move into SPECIFICATION.md.
 
-### specification.md
+### SPECIFICATION.md
 **Purpose**: Document architecture, tech stack, and general requirements
 
 **When to update**:
@@ -163,7 +165,7 @@ This is your "thinking space" where ideas can be messy and evolving. As ideas so
 
 **Content includes**:
 - **Architecture & Tech Stack** (REQUIRED):
-  - Database provider and rationale
+  - Database provider
   - LLM providers and models (if applicable)
   - Backend/frontend frameworks
   - Deployment platform
@@ -182,7 +184,7 @@ Keep this document general. Detailed implementation specs belong in PHASE#.md fi
 
 For full template, see [references/templates.md](references/templates.md).
 
-### tasks.md
+### TASKS.md
 **Purpose**: Track all project tasks in hierarchical structure
 
 **When to update**:
@@ -283,7 +285,7 @@ This is what users see first. Keep it clear, concise, and up-to-date with curren
 
 ### ALWAYS ASK AND DOCUMENT
 
-When creating or updating `specification.md`, these four items are REQUIRED:
+When creating or updating `SPECIFICATION.md`, these four items are REQUIRED:
 
 - [ ] **Database provider** and rationale (PostgreSQL, MySQL, MongoDB, SQLite, etc.)
 - [ ] **LLM providers** and models (OpenAI, Anthropic, local, etc.) - if applicable to the project
@@ -297,19 +299,19 @@ If any of these are unclear, ASK the user before proceeding. These architectural
 Before committing code changes, verify:
 
 **Architecture Decisions**:
-- [ ] Database provider documented in specification.md
+- [ ] Database provider documented in SPECIFICATION.md
 - [ ] LLM providers specified (if project uses LLMs)
 - [ ] Logging solution configured
 - [ ] Observability/monitoring setup
 
 **Documentation Sync**:
-- [ ] specification.md reflects current architecture
+- [ ] SPECIFICATION.md reflects current architecture
 - [ ] tasks.md checkboxes up to date
 - [ ] Phase files match current implementation
 - [ ] README.md user-facing information current
 
 **Feature Additions**:
-- [ ] New integrations added to specification.md
+- [ ] New integrations added to SPECIFICATION.md
 - [ ] Tasks added to tasks.md
 - [ ] Relevant PHASE#.md file updated
 - [ ] Feature-specific docs created if needed
@@ -329,14 +331,6 @@ npm run check-docs
 ```
 
 The script outputs a formatted checklist covering all critical documentation maintenance items.
-
-### Optional Git Hook Automation
-
-For teams wanting automated reminders, see [references/git-hooks-setup.md](references/git-hooks-setup.md) for:
-- Pre-commit hook to remind about documentation updates
-- Pre-push hook to run reminder checklist
-- Setup instructions for bash/zsh
-- How to bypass hooks when needed
 
 ---
 
@@ -457,22 +451,26 @@ Organize tasks with clear hierarchy:
 ```
 
 This makes it clear:
-- What the major feature is (Authentication System)
-- What needs to be built (6 subtasks)
-- What's been completed (checkboxes)
+- What definitions and major features are planned
+- What has yet to be built and in prioritized order to build foundational & prerequisite features first
+- A general history and what's been completed (checkboxes for simple toggles)
 
 ### Create Feature-Specific Docs for Complex Features
 
 If a feature requires extensive discussion, create `features/feature-name.md`:
-- Keeps phase files manageable
+- Keeps phase files manageable & prioritized
 - Provides dedicated space for feature details
 - Easier to reference and share
 - Better organization for complex projects
 
 Examples of when to create feature docs:
+- GraphRAG for semantic search
+- Dashboard displaying a script execution summary
+- New web component or page
+- New API route with multiple endpoints
 - Payment processing integration
-- Real-time collaboration system
-- Complex authentication flows
+- Real-time messaging system
+- Authentication flows
 - Multi-step workflows
 
 ### Keep Docs in Sync with Code
