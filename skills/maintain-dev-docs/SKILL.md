@@ -1,12 +1,10 @@
 ---
 name: maintain-dev-docs
-description: For all iterative software engineering projects to maintain/improve effective development documentation. Use when starting new or updating existing projects to track tasks & update documentation for adding features to existing projects, updating specifications, and/or instructions.
+description: Maintain project /docs/: specs, tasks, features, readme. Use for: project setup, feature additions, instruction improvements, or syncing documentation with code.
 ---
-
-# Developer Documentation Maintainer
+# Development Documentation Maintainer
 
 ## Overview
-
 This skill helps maintain comprehensive, evolving development documentation for software projects. It establishes a consistent pattern for capturing ideas, specifications, tasks, and implementation details in a `/docs/` folder that grows with your project. Ensures consistent WIP documentation evolution across brainstorm, specification, tasks, and feature implementation. Assists humans and AI agents track progress being made, tasks prioritization, objectives, instructions, and decisions during an iterative development process.
 
 Use this skill when:
