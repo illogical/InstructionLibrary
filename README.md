@@ -29,8 +29,9 @@ This repository includes custom-built skills designed to extend AI agent capabil
 
 Use this skill when you need documentation for update-to-date documentation for a given library/framework. It will automatically fetch docs in parallel and provide structured, actionable information.
 
-# References
+# References - Get Up-to-Date Skills from Their Sources:
 https://github.com/github/awesome-copilot
 https://github.com/muratcankoylan
 https://github.com/anthropics/skills
 https://github.com/Prat011/awesome-llm-skills
+https://github.com/obra/superpowers
