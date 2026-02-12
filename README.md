@@ -35,3 +35,4 @@ https://github.com/muratcankoylan
 https://github.com/anthropics/skills
 https://github.com/Prat011/awesome-llm-skills
 https://github.com/obra/superpowers
+https://github.com/softaworks/agent-toolkit
