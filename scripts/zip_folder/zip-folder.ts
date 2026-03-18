@@ -38,10 +38,25 @@ if (!folderArg) {
   process.exit(1);
 }
 
-const folderPath = resolve(folderArg);
+const expandedFolderArg = folderArg.startsWith("~/")
+  ? folderArg.replace("~", process.env.HOME ?? "~")
+  : folderArg;
+const folderPath = resolve(expandedFolderArg);
 
-if (!existsSync(folderPath) || !statSync(folderPath).isDirectory()) {
-  console.error(`❌  Not a valid directory: ${folderPath}`);
+try {
+  if (!statSync(folderPath).isDirectory()) {
+    console.error(`❌  Not a directory: ${folderPath}`);
+    process.exit(1);
+  }
+} catch (err: any) {
+  if (err.code === "ENOENT") {
+    console.error(`❌  Path does not exist: ${folderPath}`);
+  } else if (err.code === "EACCES") {
+    console.error(`❌  Permission denied: ${folderPath}`);
+    console.error(`    Grant Full Disk Access to your terminal in System Settings → Privacy & Security.`);
+  } else {
+    console.error(`❌  Cannot access path: ${folderPath} (${err.code ?? err.message})`);
+  }
   process.exit(1);
 }
 
@@ -76,7 +91,7 @@ if (existsSync(configPath)) {
 // Print summary
 // ---------------------------------------------------------------------------
 
-const folderName = basename(folderPath);
+const folderName = basename(folderPath).replace(/^\./, "");
 const destDir = destArg ? resolve(destArg) : process.cwd();
 const outputZip = resolve(destDir, `${folderName}.zip`);
 
