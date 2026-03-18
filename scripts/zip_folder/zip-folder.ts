@@ -5,15 +5,15 @@
  * Zips a folder into a ZIP file using the folder's name as the filename.
  * Directories listed in zip-ignore.json are excluded at any depth.
  *
- * Usage: bun zip-folder.ts <folder-path> [config-path]
+ * Usage: bun zip-folder.ts <folder-path> [config-path] [--dest <dest-dir>]
  *   folder-path  - Path to the folder to zip
  *   config-path  - (Optional) Path to ignore config JSON. Defaults to zip-ignore.json
  *                  in the same directory as this script.
+ *   --dest       - (Optional) Destination directory for the ZIP file. Defaults to cwd.
  */
 
 import { resolve, basename, join, dirname, relative } from "path";
 import { existsSync, statSync, readdirSync, readFileSync } from "fs";
-import { spawnSync } from "child_process";
 import { fileURLToPath } from "url";
 import JSZip from "jszip";
 import { writeFileSync } from "fs";
@@ -22,10 +22,19 @@ import { writeFileSync } from "fs";
 // Resolve args
 // ---------------------------------------------------------------------------
 
-const [, , folderArg, configArg] = process.argv;
+const args = process.argv.slice(2);
+
+const destFlagIndex = args.indexOf("--dest");
+let destArg: string | undefined;
+if (destFlagIndex !== -1) {
+  destArg = args[destFlagIndex + 1];
+  args.splice(destFlagIndex, 2);
+}
+
+const [folderArg, configArg] = args;
 
 if (!folderArg) {
-  console.error("❌  Usage: bun zip-folder.ts <folder-path> [config-path]");
+  console.error("❌  Usage: bun zip-folder.ts <folder-path> [config-path] [--dest <dest-dir>]");
   process.exit(1);
 }
 
@@ -68,7 +77,8 @@ if (existsSync(configPath)) {
 // ---------------------------------------------------------------------------
 
 const folderName = basename(folderPath);
-const outputZip = resolve(process.cwd(), `${folderName}.zip`);
+const destDir = destArg ? resolve(destArg) : process.cwd();
+const outputZip = resolve(destDir, `${folderName}.zip`);
 
 console.log("");
 console.log(`📦  Zipping folder : ${folderPath}`);

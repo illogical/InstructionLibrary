@@ -14,15 +14,16 @@ bun add jszip
 ## Usage
 
 ```bash
-bun zip-folder.ts <folder-path> [config-path]
+bun zip-folder.ts <folder-path> [config-path] [--dest <dest-dir>]
 ```
 
 | Argument      | Required | Description                                                                 |
 |---------------|----------|-----------------------------------------------------------------------------|
 | `folder-path` | ✅       | Path to the folder you want to zip                                          |
 | `config-path` | ❌       | Path to a custom ignore config JSON. Defaults to `zip-ignore.json` in the same directory as the script. |
+| `--dest`      | ❌       | Destination directory for the output ZIP file. Defaults to the current working directory. |
 
-The output ZIP is written to the **current working directory** and named after the target folder (e.g. `VaultPad.zip`).
+The output ZIP is named after the target folder (e.g. `VaultPad.zip`) and written to the destination directory.
 
 ### Examples
 
@@ -32,6 +33,12 @@ bun zip-folder.ts ~/projects/VaultPad
 
 # Custom config location
 bun zip-folder.ts ~/projects/VaultPad ~/configs/my-zip-ignore.json
+
+# Custom destination directory
+bun zip-folder.ts ~/projects/VaultPad --dest ~/Desktop
+
+# Custom config and destination
+bun zip-folder.ts ~/projects/VaultPad ~/configs/my-zip-ignore.json --dest /tmp/output
 
 # Zip a relative path
 bun zip-folder.ts ./my-app

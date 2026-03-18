@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ScaffoldAspireProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+018bdd96a31e25349d7fdcc68263b75dbffe502f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8d1df09eff3da74e801ed3337b362bc1bbe6928")]
 [assembly: System.Reflection.AssemblyProductAttribute("ScaffoldAspireProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ScaffoldAspireProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
