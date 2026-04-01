@@ -29,6 +29,39 @@ This repository includes custom-built skills designed to extend AI agent capabil
 
 Use this skill when you need documentation for update-to-date documentation for a given library/framework. It will automatically fetch docs in parallel and provide structured, actionable information.
 
+## Development Workflow Skills
+
+These three skills form a documentation-driven development workflow: orient → plan → implement. Each step produces or consumes artifacts that keep the agent grounded in project context.
+
+### brief
+
+Provides a concise project orientation by reading `README.md`, `docs/SPECIFICATION.md`, and `docs/TASKS.md`. Use this to give an agent a shared understanding of project intentions and current progress before any work begins.
+
+**Location**: `skills/brief/`
+
+### new-feat
+
+Builds a feature implementation plan informed by the project brief. The agent will:
+- Ask clarifying questions to sharpen the plan
+- Suggest improvements or overlooked considerations
+- Save the agreed-upon plan to `docs/features/{feature-name}/`
+- Add high-level tasks to `docs/TASKS.md`
+
+Use this before writing any code to align on scope and approach.
+
+**Location**: `skills/new-feat/`
+
+### implement-feat
+
+Executes a saved feature plan with the project brief as context. After implementing, the agent will:
+- Add or update unit tests to verify the new functionality
+- Update `README.md` with any new feature descriptions or instructions
+- Mark completed tasks in `docs/TASKS.md`
+
+Use this after `new-feat` has produced a plan in `docs/features/`.
+
+**Location**: `skills/implement-feat/`
+
 # References - Get Up-to-Date Skills from Their Sources:
 https://github.com/github/awesome-copilot
 https://github.com/muratcankoylan
