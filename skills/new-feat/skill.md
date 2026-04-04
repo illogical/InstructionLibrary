@@ -11,3 +11,5 @@ $ARGUMENTS
 * Provide suggestions if I overlooked anything noteworthy and if there are easy opportunities for improvement. 
 * After we agree upon the plan, save it to: `/docs/features/{feature-name}/{feature-name}_*.md`.
 * Add high-level tasks to @docs/TASKS.md for implementing this new feature well.
+
+Do not implement the plan. Only create the implementation plan and high-level tasks.
